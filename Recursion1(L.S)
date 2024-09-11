@@ -1,0 +1,55 @@
+package Recursion;
+
+import java.util.ArrayList;
+
+public class RecursionLinear {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 6, 7, 8, 9, 11,11,11, 45, 677, 899};
+        System.out.println(find(arr, 84, 0));
+        System.out.println(index(arr, 11, 0));
+        System.out.println(indexLast(arr, 11, arr.length-1));
+        findAllIndex(arr, 11,0);
+        System.out.println(list);
+    }
+
+    static boolean find(int[] arr, int target, int index) {
+        if (index == arr.length) {
+            return false;
+        }
+        return arr[index] == target || find(arr, target, index + 1);
+    }
+
+    static int index(int[] arr, int target, int index) {
+        if (index == arr.length) {
+            return -1;
+        }
+        if (arr[index] == target) {
+            return index;
+        } else {
+            return index(arr, target, index + 1);
+        }
+    }
+
+    static int indexLast(int[] arr, int target, int index) {
+        if (index == -1) {
+            return -1;
+        }
+        if (arr[index] == target) {
+            return index;
+        } else {
+            return indexLast(arr, target, index - 1);
+        }
+
+    }
+
+    static ArrayList<Integer> list = new ArrayList<>();
+    static void findAllIndex(int[] arr, int target, int index) {
+        if(index == arr.length) {
+            return;
+        }
+        if(arr[index] == target){
+            list.add(index);
+        }
+        findAllIndex(arr, target, index+1);
+    }
+}
